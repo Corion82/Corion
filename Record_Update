@@ -1,0 +1,55 @@
+
+import os
+
+def main():
+    for file in os.listdir("C:/Code"):
+        if ".rtf" not in file:
+            continue
+        infile = open(file, 'r')
+        ID_Number = parseFile(infile)
+        infile.close()
+        if ID_Number == None:
+            continue
+        print(ID_Number)
+        old_file_name = file
+        new_file_name = str(ID_Number) + ".rtf"
+        os.rename(old_file_name, new_file_name)
+
+#Chthonic
+def parseFile(file):
+       value = None
+       for line in file.readlines():
+          value = parseLine(line)
+          if (value != None):
+             break
+       return value
+
+#Chthonic
+def parseLine(line):
+       value = None
+       for phrase in line.split('{'):
+          value = parseBracketedPhrase(phrase)      
+          if (value != None):
+             break
+       return value
+
+#Chthonic
+def parseBracketedPhrase(phrase):
+       value = None
+       found = None
+       for phrase in phrase.split(' '):
+          if (found != None):
+             value = phrase
+             break
+          found = parseSpacePhrase(phrase)
+       return value
+
+#Chthonic
+def parseSpacePhrase(phrase):
+       # print(phrase) # test for detection
+       if (phrase == "Patient:\\tab"):
+          return True
+       return None
+
+
+main()
