@@ -2,6 +2,9 @@
 import os
 
 def main():
+    
+    ID_List = []                                                       # This is a memoization list. It will remember all the ID numbers we used for filenames.
+    
     for file in os.listdir("C:/Code"):
         if ".rtf" not in file:
             continue
@@ -12,6 +15,18 @@ def main():
             continue
         print(ID_Number)
         old_file_name = file
+        
+        appendix = 1                                                   # Reset the appendix to 1 on each loop
+        for ID in ID_List:                                             # For each ID number we've memoized in our list of file names
+            if appendix == 1:                                          # If this is our first time potentially matching something, no appendix to the filename
+                if ID == str(ID_Number):                               # If we have a match in here, we need to increase the appendix.
+                    appendix += 1
+            else:                                                      # If this is any other time we need to add an appendix
+                if ID == (str(ID_Number) + '_' + str(appendix))        # If we have a match here, we still need to increase the appendix because we had another match.
+                    appendix += 1
+        ID_Number = str(ID_Number) + '_' + str(appendix)               # Change the ID_Number to reflect it's new name so it's not a duplicate
+        ID_List.append(ID_Number)                                      # Now we know what appendix to use for the file, time to add it to the list
+        
         new_file_name = str(ID_Number) + ".rtf"
         os.rename(old_file_name, new_file_name)
 
