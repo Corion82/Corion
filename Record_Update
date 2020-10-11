@@ -22,9 +22,12 @@ def main():
                 if ID == str(ID_Number):                               # If we have a match in here, we need to increase the appendix.
                     appendix += 1
             else:                                                      # If this is any other time we need to add an appendix
-                if ID == (str(ID_Number) + '_' + str(appendix))        # If we have a match here, we still need to increase the appendix because we had another match.
+                if ID == (str(ID_Number) + '_' + str(appendix)):       # If we have a match here, we still need to increase the appendix because we had another match.
                     appendix += 1
-        ID_Number = str(ID_Number) + '_' + str(appendix)               # Change the ID_Number to reflect it's new name so it's not a duplicate
+        if (appendix > 1):
+            ID_Number = str(ID_Number) + '_' + str(appendix)           # Change the ID_Number to reflect it's new name so it's not a duplicate
+        else:
+            ID_Number = str(ID_Number)
         ID_List.append(ID_Number)                                      # Now we know what appendix to use for the file, time to add it to the list
         
         new_file_name = str(ID_Number) + ".rtf"
