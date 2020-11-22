@@ -67,7 +67,7 @@ def parseLine(line):
        first = None
        last = None
        for phrase in line.split('{'):
-          value = parseBracketedPhrase(phrase)      
+          last, first = parseBracketedPhrase(phrase)      
           if (first != None or last != None):
              break
        return last, first
@@ -75,6 +75,7 @@ def parseLine(line):
 #Chthonic
 def parseBracketedPhrase(phrase):
        id = None
+       dash = None
        first = None
        last = None
        found = None
@@ -84,9 +85,13 @@ def parseBracketedPhrase(phrase):
              print("Found First name: " + phrase)
              first = phrase
              continue
-          if (found != None and id == None):
+          if (dash != None and id == None):
              print("Found the ID: " + phrase)
              id = phrase
+             continue
+          if (found != None and dash == None):
+             print("Found the dash")
+             dash = phrase
              continue
           found = parseSpacePhrase(phrase)
           if (checkName(phrase)):
