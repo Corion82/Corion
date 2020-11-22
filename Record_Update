@@ -84,13 +84,13 @@ def parseBracketedPhrase(phrase):
 def checkName(phrase):
        for part in phrase.split('-'):
           if (not part.isalpha()):
-             return false
+             return False
        if (len(phrase) < 2):
-          return false
+          return False
        vowels = phrase.count("a") + phrase.count("e") + phrase.count("i") + phrase.count("o") + phrase.count("u")
        if (vowels == 0):
-          return false
-       return true
+          return False
+       return True
 
 #Chthonic
 def parseSpacePhrase(phrase):
