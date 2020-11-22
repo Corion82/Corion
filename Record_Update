@@ -103,7 +103,7 @@ def parseBracketedPhrase(phrase):
 
 def checkName(phrase):
        print(phrase)
-       for part in phrase.split('-'):
+       for part in phrase.rstrip().split('-'):
           if (not part.isalpha()):
              return False
        if (len(phrase) < 2):
@@ -126,7 +126,7 @@ def parseUnbracketedPhrase(phrase):
        date = None
        time = None
        found = None
-       for phrase in phrase.split(' '):
+       for phrase in phrase.rstrip().split(' '):
           if (date != None):
              print("Found the time: " + phrase)
              time = phrase
