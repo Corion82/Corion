@@ -128,7 +128,7 @@ def parseUnbracketedPhrase(phrase):
              for piece in part.split('/'):
                 date = date + piece
              continue
-          if (found != None and tab == None):
+          if (foundOne != None and tab == None):
              tab = part                          #Why is there an extra tab in there to gunk things up??
              continue
           if (foundOne == None):
