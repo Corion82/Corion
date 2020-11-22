@@ -109,7 +109,7 @@ def checkName(phrase):
        if (len(phrase) < 2):
           return False
        vowels = phrase.count("a") + phrase.count("e") + phrase.count("i") + phrase.count("o") + phrase.count("u")
-       print(number of vowels)
+       print("number of vowels: " + vowels)
        if (vowels == 0):
           return False
        return True
