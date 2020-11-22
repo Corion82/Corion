@@ -11,6 +11,14 @@ def main():
         last, first, date, time = parseFile(infile)
         infile.close()
         if (last == None or first == None or date == None or time == None):
+            if (last == None):
+                print(file + " had no last name")
+            if (first == None):
+                print(file + " had no first name")
+            if (date == None):
+                print(file + " had no date")
+            if (time == None):
+                print(file + " had no time")
             continue
         print(last + ", " + first + ": " + date + " " + time)
         old_file_name = file
