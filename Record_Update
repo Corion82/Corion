@@ -144,10 +144,11 @@ def parseUnbracketedPhrase(phrase):
              found = parseTimePhrase(phrase)
              continue
        
-       newdate = ""
-       for part in date.rsplit().split('/'):
-          newdate = newdate + part
-       date = newdate
+       if (date != None):
+          newdate = ""
+          for part in date.rsplit().split('/'):
+             newdate = newdate + part
+          date = newdate
        
        return date, time
 
