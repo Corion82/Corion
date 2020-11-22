@@ -127,6 +127,7 @@ def parseUnbracketedPhrase(phrase):
        time = None
        found = None
        for phrase in phrase.rstrip().split(' '):
+          print(phrase)
           if (date != None):
              print("Found the time: " + phrase)
              time = phrase
