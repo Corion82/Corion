@@ -148,6 +148,6 @@ def parseTimePhrase(phrase):
        
        if (phrase == "Date:\\tab"):
           return True
-       return False
+       return None
 
 main()
