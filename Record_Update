@@ -92,11 +92,11 @@ def parseBracketedPhrase(phrase):
              found = parseSpacePhrase(phrase)
              continue
           if (first != None and checkName(phrase)):
-             last = phrase                      # We're letting the loop finish. The last valid name on the line is the last name.
+             last = phrase.rstrip().rstrip("\\par")         # We're letting the loop finish. The last valid name on the line is the last name.
        return last, first
 
 def checkName(phrase):
-       for part in phrase.rstrip().split('-'):
+       for part in phrase.rstrip().rstrip("\\par").split('-'):
           if (not part.isalpha()):
              return False
        if (len(phrase) < 2):
