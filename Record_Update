@@ -124,6 +124,7 @@ def parseUnbracketedPhrase(phrase):
              time = part
              break
           if ((tab != None or foundTwo != None) and date == None):
+             found("Date was: " + part)
              date = ""
              for piece in part.split('/'):
                 date = date + piece
@@ -148,7 +149,9 @@ def parseTimePhraseOne(phrase):
 
 def parseTimePhraseTwo(phrase):
 
+       print(phrase)
        if (phrase == "Date:\\tab\\tab"):
           return True
        return None
+
 main()
