@@ -102,12 +102,14 @@ def parseBracketedPhrase(phrase):
        return last, first
 
 def checkName(phrase):
+       print(phrase)
        for part in phrase.split('-'):
           if (not part.isalpha()):
              return False
        if (len(phrase) < 2):
           return False
        vowels = phrase.count("a") + phrase.count("e") + phrase.count("i") + phrase.count("o") + phrase.count("u")
+       print(number of vowels)
        if (vowels == 0):
           return False
        return True
