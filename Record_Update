@@ -127,28 +127,24 @@ def parseUnbracketedPhrase(phrase):
        date = None
        time = None
        found = None
-       for phrase in phrase.rstrip().split(' '):
+       for part in phrase.rstrip().split(' '):
           if (date != None):
              print("Found the time: " + phrase)
-             time = phrase
+             time = part
              break
           if (tab != None and date == None):
-             print("Found the date: " + phrase)
-             date = phrase
+             print("Found the date: " + part)
+             date = ""
+             for piece in part.split('/'):
+                date = date + piece
              continue
           if (found != None and tab == None):
              print("Found the tab")
-             tab = phrase                       #Why is there an extra tab in there to gunk things up??
+             tab = part                          #Why is there an extra tab in there to gunk things up??
              continue
           if (found == None):
-             found = parseTimePhrase(phrase)
+             found = parseTimePhrase(part)
              continue
-       
-       if (date != None):
-          newdate = ""
-          for part in date.rsplit().split('/'):
-             newdate = newdate + part
-          date = newdate
        
        return date, time
 
