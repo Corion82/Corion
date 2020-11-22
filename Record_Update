@@ -23,7 +23,7 @@ def main():
         print(last + ", " + first + ": " + date + " " + time)
         old_file_name = file
         
-        ID_Number = last.rstrip() + '-' + first.rstrip() + '-' + date.rstrip() + '-' + time.rstrip()
+        ID_Number = last.rstrip() + '-' + first.rstrip() + '-' + date.rstrip()
                                                                        # This will take the value of our old ID number.
         
         appendix = 1                                                   # Reset the appendix to 1 on each loop
