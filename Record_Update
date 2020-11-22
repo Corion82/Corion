@@ -53,12 +53,10 @@ def parseFile(file):
           if (first == None):
              last, first = parseLine(line)
              if (first != None or last != None):
-                print("Found the names")
           else:
              #Now we have our name, time to continue to find our date
              date, time = parseUnbracketedPhrase(line)
              if (date != None or time != None):
-                print("Found the date and time")
                 break
        
        return last, first, date, time
@@ -83,34 +81,28 @@ def parseBracketedPhrase(phrase):
        previous = None
        for phrase in phrase.split(' '):
           if (id != None and first == None):
-             print("Found First name: " + phrase)
              first = phrase
              continue
           if (dash != None and id == None):
-             print("Found the ID: " + phrase)
              id = phrase
              continue
           if (found != None and dash == None):
-             print("Found the dash")
              dash = phrase
              continue
           if (found == None):
              found = parseSpacePhrase(phrase)
              continue
           if (first != None and checkName(phrase)):
-             print("Candidate last name: " + phrase)
              last = phrase                      # We're letting the loop finish. The last valid name on the line is the last name.
        return last, first
 
 def checkName(phrase):
-       print(phrase)
        for part in phrase.rstrip().split('-'):
           if (not part.isalpha()):
              return False
        if (len(phrase) < 2):
           return False
        vowels = phrase.count("a") + phrase.count("e") + phrase.count("i") + phrase.count("o") + phrase.count("u")
-       print("number of vowels: " + str(vowels))
        if (vowels == 0):
           return False
        return True
@@ -129,17 +121,14 @@ def parseUnbracketedPhrase(phrase):
        found = None
        for part in phrase.rstrip().split(' '):
           if (date != None):
-             print("Found the time: " + phrase)
              time = part
              break
           if (tab != None and date == None):
-             print("Found the date: " + part)
              date = ""
              for piece in part.split('/'):
                 date = date + piece
              continue
           if (found != None and tab == None):
-             print("Found the tab")
              tab = part                          #Why is there an extra tab in there to gunk things up??
              continue
           if (found == None):
