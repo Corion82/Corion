@@ -134,10 +134,8 @@ def parseUnbracketedPhrase(phrase):
              continue
           if (foundOne == None):
              foundOne = parseTimePhraseOne(part)
-             continue
           if (foundTwo == None):
              foundTwo = parseTimePhraseTwo(part)
-             continue
        
        return date, time
 
