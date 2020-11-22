@@ -52,7 +52,6 @@ def parseFile(file):
        for line in file.readlines():
           if (first == None):
              last, first = parseLine(line)
-             if (first != None or last != None):
           else:
              #Now we have our name, time to continue to find our date
              date, time = parseUnbracketedPhrase(line)
