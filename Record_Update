@@ -1,4 +1,3 @@
-
 import os
 
 def main():
@@ -9,12 +8,14 @@ def main():
         if ".rtf" not in file:
             continue
         infile = open(file, 'r')
-        ID_Number = parseFile(infile)
+        last, first, date, time = parseFile(infile)
         infile.close()
-        if ID_Number == None:
+        if (last == None or first == None or date == None or time == None):
             continue
-        print(ID_Number)
+        print(last + ", " + first + ": " + date + " " + time)
         old_file_name = file
+        
+        ID_Number = last + '-' + first + '-' + date + '-' + time       # This will take the value of our old ID number.
         
         appendix = 1                                                   # Reset the appendix to 1 on each loop
         for ID in ID_List:                                             # For each ID number we've memoized in our list of file names
@@ -35,32 +36,61 @@ def main():
 
 #Chthonic
 def parseFile(file):
-       value = None
+       last = None
+       first = None
+       date = None
+       time = None
        for line in file.readlines():
-          value = parseLine(line)
-          if (value != None):
+          last, first = parseLine(line)
+          if (first != None or last != None):
              break
-       return value
+       #Now we have our name, time to continue to find our date
+       for line in file.readlines():
+          date, time = parseUnbracketedPhrase(line)
+          if (date != None or time != None):
+             break
+        
+       return last, first, date, time
 
 #Chthonic
 def parseLine(line):
-       value = None
+       first = None
+       last = None
        for phrase in line.split('{'):
           value = parseBracketedPhrase(phrase)      
-          if (value != None):
+          if (first != None or last != None):
              break
-       return value
+       return last, first
 
 #Chthonic
 def parseBracketedPhrase(phrase):
-       value = None
+       id = None
+       first = None
+       last = None
        found = None
+       previous = None
        for phrase in phrase.split(' '):
-          if (found != None):
-             value = phrase
-             break
+          if (id != None and first == None):
+             first = phrase
+             continue
+          if (found != None and id == None):
+             id = phrase
+             continue
           found = parseSpacePhrase(phrase)
-       return value
+          if (checkName(phrase)):
+             last = phrase                      # We're letting the loop finish. The last valid name on the line is the last name.
+       return last, first
+
+def checkName(phrase):
+       for part in phrase.split('-'):
+          if (not part.isalpha()):
+             return false
+       if (len(phrase) < 2):
+          return false
+       vowels = phrase.count("a") + phrase.count("e") + phrase.count("i") + phrase.count("o") + phrase.count("u")
+       if (vowels == 0):
+          return false
+       return true
 
 #Chthonic
 def parseSpacePhrase(phrase):
@@ -69,5 +99,28 @@ def parseSpacePhrase(phrase):
           return True
        return None
 
+def parseUnbracketedPhrase(phrase):
+       tab = None
+       date = None
+       time = None
+       found = None
+       for phrase in phrase.split(' '):
+          if (date != None):
+             time = phrase
+             break
+          if (tab != None and date == None):
+             date = phrase
+             continue
+          if (found != None and tab == None):
+             tab = phrase                       #Why is there an extra tab in there to gunk things up??
+             continue
+          found = parseTimePhrase(phrase)
+       return date, time
+
+def parseTimePhrase(phrase):
+       
+       if (phrase == "Date:\tab"):
+          return True
+       return False
 
 main()
