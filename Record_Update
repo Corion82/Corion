@@ -81,11 +81,11 @@ def parseBracketedPhrase(phrase):
        previous = None
        for phrase in phrase.split(' '):
           if (id != None and first == None):
-             print("Found First name: " + first)
+             print("Found First name: " + phrase)
              first = phrase
              continue
           if (found != None and id == None):
-             print("Found the ID: " + id)
+             print("Found the ID: " + phrase)
              id = phrase
              continue
           found = parseSpacePhrase(phrase)
@@ -119,7 +119,7 @@ def parseUnbracketedPhrase(phrase):
        found = None
        for phrase in phrase.split(' '):
           if (date != None):
-             print("Found the time: " + time)
+             print("Found the time: " + phrase)
              time = phrase
              break
           if (tab != None and date == None):
