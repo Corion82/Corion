@@ -94,7 +94,7 @@ def parseBracketedPhrase(phrase):
              dash = phrase
              continue
           found = parseSpacePhrase(phrase)
-          if (checkName(phrase)):
+          if (first != None and checkName(phrase)):
              print("Candidate last name: " + phrase)
              last = phrase                      # We're letting the loop finish. The last valid name on the line is the last name.
        return last, first
