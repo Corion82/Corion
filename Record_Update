@@ -23,11 +23,6 @@ def main():
         print(last + ", " + first + ": " + date + " " + time)
         old_file_name = file
         
-        newdate = ""
-        for part in date.rsplit().split('/'):
-            newdate = newdate + part
-        date = newdate
-        
         ID_Number = last.rstrip() + '-' + first.rstrip() + '-' + date
                                                                        # This will take the value of our old ID number.
         
@@ -148,6 +143,12 @@ def parseUnbracketedPhrase(phrase):
           if (found == None):
              found = parseTimePhrase(phrase)
              continue
+       
+       newdate = ""
+       for part in date.rsplit().split('/'):
+          newdate = newdate + part
+       date = newdate
+       
        return date, time
 
 def parseTimePhrase(phrase):
