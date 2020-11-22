@@ -146,7 +146,7 @@ def parseUnbracketedPhrase(phrase):
 
 def parseTimePhrase(phrase):
        
-       if (phrase == "Date:\tab"):
+       if (phrase == "Date:\\tab"):
           return True
        return False
 
