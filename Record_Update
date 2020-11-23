@@ -98,7 +98,7 @@ def parseBracketedPhrase(phrase):
 def checkName(phrase):
        for part in phrase.rstrip().rstrip("\\par").replace('\'', '-').split('-'):
           print(part)
-          if (not part.isalpha()):
+          if (not part.isalpha() and not ''):
              if ("St." in part):
                 if (not part.replace('St.','').isalpha()):
                    return False
