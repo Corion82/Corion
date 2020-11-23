@@ -96,7 +96,7 @@ def parseBracketedPhrase(phrase):
        return last, first
 
 def checkName(phrase):
-       for part in phrase.rstrip().rstrip("\\par").split('-|\''):
+       for part in phrase.rstrip().rstrip("\\par").replace('\'', '-').split('-'):
           print(part)
           if (not part.isalpha()):
              return False
