@@ -101,7 +101,6 @@ def parseBracketedPhrase(phrase):
 
 def checkName(phrase):
        for part in phrase.rstrip().rstrip("\\par").replace('\'', '-').split('-'):
-          print(part)
           if (not part.isalpha() and not (part == '')):
              if ("St." in part):
                 if (not part.replace('St.','').isalpha()):
@@ -134,7 +133,6 @@ def parseUnbracketedPhrase(phrase):
              time = part
              break
           if ((tab != None or foundTwo != None) and date == None):
-             print("Date was: " + part)
              date = ""
              for piece in part.split('/'):
                 date = date + piece
@@ -157,7 +155,6 @@ def parseTimePhraseOne(phrase):
 
 def parseTimePhraseTwo(phrase):
 
-       print(phrase)
        if (phrase == "Date:\\tab\\tab"):
           return True
        return None
