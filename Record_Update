@@ -99,10 +99,14 @@ def checkName(phrase):
        for part in phrase.rstrip().rstrip("\\par").replace('\'', '-').split('-'):
           print(part)
           if (not part.isalpha()):
-             return False
+             if ("St." in part):
+                if (not part.replace('St.','').isalpha()):
+                   return False
+             else:
+                return False
        if (len(phrase) < 2):
           return False
-       vowels = phrase.count("a") + phrase.count("e") + phrase.count("i") + phrase.count("o") + phrase.count("u")
+       vowels = phrase.count("a") + phrase.count("e") + phrase.count("i") + phrase.count("o") + phrase.count("u") + phrase.count("y")
        if (vowels == 0):
           return False
        return True
