@@ -91,8 +91,12 @@ def parseBracketedPhrase(phrase):
           if (found == None):
              found = parseSpacePhrase(phrase)
              continue
-          if (first != None and checkName(phrase)):
-             last = phrase.rstrip().rstrip("\\par")         # We're letting the loop finish. The last valid name on the line is the last name.
+          if (first != None and checkName(phrase)):           # We're letting the loop finish. The last valid name on the line is the last name.
+             if('\\' in phrase):
+                last = phrase.rstrip().split('\\')[0]         # We are going to grab everything before the \ character here.
+             else:
+                last = phrase
+       
        return last, first
 
 def checkName(phrase):
